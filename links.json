@@ -17,5 +17,17 @@
         "style": "bg-onedrive"
       }
     ]
+  },
+  {
+    "category": "新分类",
+    "items": [
+      {
+        "icon": "B",
+        "style": "bg-acc",
+        "title": "新链接",
+        "desc": "请输入描述",
+        "url": "https://"
+      }
+    ]
   }
 ]
