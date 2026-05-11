@@ -124,7 +124,7 @@
     "items": [
       {
         "icon": "J",
-        "style": "bg-acc",
+        "style": "bg-bim360",
         "title": "项目竣工图",
         "desc": "竣工图存档",
         "url": "https://metro1sas-my.sharepoint.com/my?id=%2Fpersonal%2Fweak%5Fcurrent%5Fmetro1%5Fcom%5Fco%2FDocuments%2F%E9%A1%B9%E7%9B%AE%E7%AB%A3%E5%B7%A5%E5%9B%BE%E8%AE%B0%E5%BD%95&viewid=070e8b01%2D2c4d%2D47da%2D96b5%2Df106fad48cdf"
@@ -135,6 +135,13 @@
         "title": "正线过轨图",
         "desc": "过轨管预埋图纸",
         "url": "https://metro1sas-my.sharepoint.com/:u:/g/personal/weak_current_metro1_com_co/IQBp_njADRR4SawCqxFG08kLAbCK6KvJYZN-zdliX9YeJjo?e=miqWJ0"
+      },
+      {
+        "icon": "X",
+        "style": "bg-acc",
+        "title": "现场平板ACC图纸",
+        "desc": "现场查看BIM文件夹",
+        "url": "https://acc.autodesk.com/docs/files/projects/e39a06ca-ae5b-4b86-92c5-46917f518e67?folderUrn=urn%3Aadsk.wipprod%3Afs.folder%3Aco.Vw6ob-rTRAqab6G4X4CElg&viewModel=detail&moduleId=folders"
       }
     ]
   }
