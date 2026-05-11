@@ -25,7 +25,7 @@
       },
       {
         "icon": "A",
-        "style": "bg-onedrive",
+        "style": "bg-aconex",
         "title": "AConex",
         "desc": "全专业文档管理",
         "url": "https://metro1sas.sharepoint.com/sites/metro1/BBD/Forms/AllItems.aspx"
@@ -116,6 +116,25 @@
         "title": "4号站CSD图纸",
         "desc": "CNL/CDE语音与数据桥架施工图纸",
         "url": "https://metro1sas-my.sharepoint.com/personal/bs_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fbs%5Fmetro1%5Fcom%5Fco%2FDocuments%2FuBIM%20CSD%2F304%2DESTACI%C3%93N%20METRO%204&ga=1"
+      }
+    ]
+  },
+  {
+    "category": "其他",
+    "items": [
+      {
+        "icon": "J",
+        "style": "bg-acc",
+        "title": "项目竣工图",
+        "desc": "竣工图存档",
+        "url": "https://metro1sas-my.sharepoint.com/my?id=%2Fpersonal%2Fweak%5Fcurrent%5Fmetro1%5Fcom%5Fco%2FDocuments%2F%E9%A1%B9%E7%9B%AE%E7%AB%A3%E5%B7%A5%E5%9B%BE%E8%AE%B0%E5%BD%95&viewid=070e8b01%2D2c4d%2D47da%2D96b5%2Df106fad48cdf"
+      },
+      {
+        "icon": "Z",
+        "style": "bg-aconex",
+        "title": "正线过轨图",
+        "desc": "过轨管预埋图纸",
+        "url": "https://metro1sas-my.sharepoint.com/:u:/g/personal/weak_current_metro1_com_co/IQBp_njADRR4SawCqxFG08kLAbCK6KvJYZN-zdliX9YeJjo?e=miqWJ0"
       }
     ]
   }
