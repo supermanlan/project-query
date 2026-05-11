@@ -647,65 +647,50 @@ async function loadLinks() {
         if (/^V\d{2}$/.test(ver)) return "正式版本";
         return "版本号";
     }
-   
-const GITHUB_TOKEN = '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';
+
+    
 const GITHUB_OWNER = 'supermanlan';
 const GITHUB_REPO = 'project-query';
 const GITHUB_BRANCH = 'main';
 const GITHUB_FILE_PATH = 'links.json';
-const ADMIN_PASSWORD = 'L18418149501';
 
-// 创建管理面板
-function createAdminPanel() {
-    const contentContainer = document.querySelector('.content-container');
-    if (!contentContainer) return;
-
-    if (document.getElementById('admin-panel')) return;
-
-    const div = document.createElement('div');
-    div.id = 'admin-panel';
-    div.style.display = 'none';
-
-    div.innerHTML = `
-        <div class="glass-header" style="margin-top:20px;">
-            <h2>⚙️ 常用平台管理</h2>
-            <p>可视化编辑 links.json</p>
-        </div>
-
-        <div style="
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-        ">
-            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px;">
-                <button class="btn-glass btn-primary" onclick="addCategory()">
-                    ➕ 新增分类
-                </button>
-
-                <button class="btn-glass btn-primary" onclick="saveLinksToGitHub()">
-                    💾 保存到 GitHub
-                </button>
-
-                <button class="btn-glass btn-secondary" onclick="closeAdminPanel()">
-                    ❌ 关闭
-                </button>
-            </div>
-
-            <div id="admin-editor"></div>
-        </div>
-    `;
-
-    contentContainer.appendChild(div);
+// 本地缓存 Token（仅保存在当前浏览器）
+function getGitHubToken() {
+    return localStorage.getItem('github_token') || '';
 }
 
-// 打开管理面板
+function setGitHubToken(token) {
+    localStorage.setItem('github_token', token);
+}
+
+function clearGitHubToken() {
+    localStorage.removeItem('github_token');
+}
+
+// ==========================================
+// 打开管理面板（不再需要管理员密码）
+// ==========================================
 function openAdminPanel() {
-    const pwd = prompt('请输入管理员密码：');
-    if (pwd !== ADMIN_PASSWORD) {
-        alert('密码错误');
-        return;
+    let token = getGitHubToken();
+
+    // 如果没有 Token，则提示输入
+    if (!token) {
+        token = prompt(
+            '请输入 GitHub Personal Access Token（需要 Contents: Read and Write 权限）：'
+        );
+
+        if (!token) return;
+
+        // 用户可直接粘贴带空格的内容
+        token = token.trim();
+
+        if (!token) {
+            alert('Token 不能为空');
+            return;
+        }
+
+        // 保存到浏览器本地，下次无需重复输入
+        setGitHubToken(token);
     }
 
     document.getElementById('result-container').style.display = 'none';
@@ -715,224 +700,103 @@ function openAdminPanel() {
     renderAdminEditor();
 }
 
-// 关闭管理面板
-function closeAdminPanel() {
-    document.getElementById('admin-panel').style.display = 'none';
-    document.getElementById('result-container').style.display = 'flex';
+// 可选：增加一个“更换 Token”功能
+function changeGitHubToken() {
+    const token = prompt('请输入新的 GitHub Token：');
+    if (!token) return;
+    setGitHubToken(token.trim());
+    alert('Token 已更新');
 }
 
-// 渲染可视化编辑器
-function renderAdminEditor() {
-    const editor = document.getElementById('admin-editor');
-    if (!editor) return;
-
-    let html = '';
-
-    PROJECT_LINKS.forEach((group, groupIndex) => {
-        html += `
-            <div style="
-                margin-bottom:30px;
-                padding:20px;
-                border-radius:16px;
-                background:rgba(255,255,255,0.6);
-                border:1px solid rgba(255,255,255,0.8);
-            ">
-                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;">
-                    <input
-                        type="text"
-                        value="${escapeHtml(group.category || '')}"
-                        onchange="updateCategory(${groupIndex}, this.value)"
-                        style="
-                            flex:1;
-                            min-width:250px;
-                            padding:10px;
-                            border-radius:8px;
-                            border:1px solid #ccc;
-                        "
-                    >
-
-                    <button onclick="deleteCategory(${groupIndex})">
-                        🗑️ 删除分类
-                    </button>
-
-                    <button onclick="addLink(${groupIndex})">
-                        ➕ 添加链接
-                    </button>
-                </div>
-        `;
-
-        group.items.forEach((item, itemIndex) => {
-            html += `
-                <div style="
-                    margin:10px 0;
-                    padding:15px;
-                    background:#ffffff;
-                    border-radius:12px;
-                    border:1px solid #eee;
-                ">
-                    <input
-                        type="text"
-                        placeholder="标题"
-                        value="${escapeHtml(item.title || '')}"
-                        onchange="updateItem(${groupIndex}, ${itemIndex}, 'title', this.value)"
-                        style="width:100%; margin-bottom:8px; padding:8px; box-sizing:border-box;"
-                    >
-
-                    <input
-                        type="text"
-                        placeholder="描述"
-                        value="${escapeHtml(item.desc || '')}"
-                        onchange="updateItem(${groupIndex}, ${itemIndex}, 'desc', this.value)"
-                        style="width:100%; margin-bottom:8px; padding:8px; box-sizing:border-box;"
-                    >
-
-                    <input
-                        type="text"
-                        placeholder="链接"
-                        value="${escapeHtml(item.url || '')}"
-                        onchange="updateItem(${groupIndex}, ${itemIndex}, 'url', this.value)"
-                        style="width:100%; margin-bottom:8px; padding:8px; box-sizing:border-box;"
-                    >
-
-                    <div style="display:flex; gap:8px; margin-bottom:8px;">
-                        <input
-                            type="text"
-                            placeholder="图标"
-                            value="${escapeHtml(item.icon || '🔗')}"
-                            onchange="updateItem(${groupIndex}, ${itemIndex}, 'icon', this.value)"
-                            style="flex:1; padding:8px;"
-                        >
-
-                        <input
-                            type="text"
-                            placeholder="样式"
-                            value="${escapeHtml(item.style || 'bg-aconex')}"
-                            onchange="updateItem(${groupIndex}, ${itemIndex}, 'style', this.value)"
-                            style="flex:1; padding:8px;"
-                        >
-                    </div>
-
-                    <button onclick="deleteItem(${groupIndex}, ${itemIndex})">
-                        🗑️ 删除此链接
-                    </button>
-                </div>
-            `;
-        });
-
-        html += `</div>`;
-    });
-
-    editor.innerHTML = html;
+// 可选：清除本地保存的 Token
+function logoutGitHubToken() {
+    if (!confirm('确定删除本地保存的 GitHub Token 吗？')) return;
+    clearGitHubToken();
+    alert('Token 已删除');
 }
 
-// 防止 HTML 特殊字符破坏输入框
-function escapeHtml(text) {
-    return String(text)
-        .replace(/&/g, '&amp;')
-        .replace(/"/g, '&quot;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
-}
-
-// 更新分类
-function updateCategory(groupIndex, value) {
-    PROJECT_LINKS[groupIndex].category = value;
-}
-
-// 新增分类
-function addCategory() {
-    PROJECT_LINKS.push({
-        category: '新分类',
-        items: []
-    });
-    renderAdminEditor();
-}
-
-// 删除分类
-function deleteCategory(groupIndex) {
-    if (!confirm('确定删除该分类吗？')) return;
-    PROJECT_LINKS.splice(groupIndex, 1);
-    renderAdminEditor();
-}
-
-// 新增链接
-function addLink(groupIndex) {
-    PROJECT_LINKS[groupIndex].items.push({
-        title: '新链接',
-        desc: '描述',
-        url: 'https://',
-        icon: '🔗',
-        style: 'bg-aconex'
-    });
-    renderAdminEditor();
-}
-
-// 更新链接字段
-function updateItem(groupIndex, itemIndex, field, value) {
-    PROJECT_LINKS[groupIndex].items[itemIndex][field] = value;
-}
-
-// 删除链接
-function deleteItem(groupIndex, itemIndex) {
-    if (!confirm('确定删除此链接吗？')) return;
-    PROJECT_LINKS[groupIndex].items.splice(itemIndex, 1);
-    renderAdminEditor();
-}
-
+// ==========================================
 // 保存到 GitHub
+// ==========================================
 async function saveLinksToGitHub() {
     try {
-        alert('开始保存，请稍候...');
+        const token = getGitHubToken();
 
-        // 获取当前文件信息（含 SHA）
-        const getResp = await fetch(
-            `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`,
-            {
-                headers: {
-                    Authorization: `token ${GITHUB_TOKEN}`
-                }
-            }
-        );
-
-        if (!getResp.ok) {
-            throw new Error('无法读取 links.json');
+        if (!token) {
+            alert('未检测到 GitHub Token，请重新打开管理面板输入。');
+            return;
         }
 
-        const getData = await getResp.json();
+        alert('开始保存，请稍候...');
 
-        // 转 Base64（支持中文）
+        const apiUrl =
+            `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`;
+
+        // 1. 读取现有文件，获取 SHA（如果文件不存在则允许创建）
+        const getResp = await fetch(apiUrl, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/vnd.github+json'
+            }
+        });
+
+        let sha = null;
+
+        if (getResp.status === 200) {
+            const getData = await getResp.json();
+            sha = getData.sha;
+        } else if (getResp.status === 404) {
+            sha = null; // 文件不存在时新建
+        } else if (getResp.status === 401 || getResp.status === 403) {
+            clearGitHubToken();
+            throw new Error('Token 无效或权限不足，请重新输入。');
+        } else {
+            const errText = await getResp.text();
+            throw new Error(`无法读取 links.json (${getResp.status})：${errText}`);
+        }
+
+        // 2. JSON → Base64（支持中文）
         const jsonText = JSON.stringify(PROJECT_LINKS, null, 2);
         const content = btoa(unescape(encodeURIComponent(jsonText)));
 
-        // 提交更新
-        const putResp = await fetch(
-            `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`,
-            {
-                method: 'PUT',
-                headers: {
-                    Authorization: `token ${GITHUB_TOKEN}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    message: 'Update links.json from web admin',
-                    content: content,
-                    sha: getData.sha,
-                    branch: GITHUB_BRANCH
-                })
-            }
-        );
+        // 3. 组装请求体
+        const body = {
+            message: 'Update links.json from web admin',
+            content: content,
+            branch: GITHUB_BRANCH
+        };
+
+        if (sha) {
+            body.sha = sha;
+        }
+
+        // 4. 提交更新
+        const putResp = await fetch(apiUrl, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/vnd.github+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+
+        if (putResp.status === 401 || putResp.status === 403) {
+            clearGitHubToken();
+            throw new Error('Token 无效或权限不足，请重新输入。');
+        }
 
         if (!putResp.ok) {
             const errText = await putResp.text();
-            throw new Error(errText);
+            throw new Error(`保存失败 (${putResp.status})：${errText}`);
         }
 
-        alert('保存成功！GitHub Pages 通常 1~2 分钟后更新。');
+        alert('保存成功！GitHub Pages 通常 1～2 分钟后更新。');
 
-        // 刷新页面中的链接展示
-        renderLinks();
+        // 刷新链接展示
+        await loadLinks();
 
-        // 关闭面板
+        // 关闭管理面板
         closeAdminPanel();
 
     } catch (error) {
