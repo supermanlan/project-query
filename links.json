@@ -1,0 +1,21 @@
+[
+  {
+    "category": "项目平台",
+    "items": [
+      {
+        "title": "ACC",
+        "desc": "Autodesk Construction Cloud",
+        "url": "https://acc.autodesk.com",
+        "icon": "A",
+        "style": "bg-acc"
+      },
+      {
+        "title": "OneDrive",
+        "desc": "微软云盘",
+        "url": "https://onedrive.live.com",
+        "icon": "O",
+        "style": "bg-onedrive"
+      }
+    ]
+  }
+]

@@ -290,28 +290,18 @@
     // ==========================================
     // 🔗 常用链接配置
     // ==========================================
-    const PROJECT_LINKS = [
-        {
-            category: "核心协作平台",
-            items: [
-                { title: "Aconex 平台", desc: "全专业文档管理", url: "https://us1.aconex.com/hub/index.html", icon: "A", style: "bg-aconex" },
-                { title: "BIM 360", desc: "Autodesk 协同平台 (全专业)", url: "https://docs.b360.autodesk.com/projects/161b9683-2f19-4d9f-a456-0f0c8dd37eba/folders/urn:adsk.wipprod:fs.folder:co.ZrBsrMHlTeecch0m86JLXA/detail", icon: "B", style: "bg-bim360" },
-                { title: "ACC 云平台", desc: "在线 BIM 模型上传", url: "https://acc.autodesk.com/docs/files/projects/e39a06ca-ae5b-4b86-92c5-46917f518e67?folderUrn=urn%3Aadsk.wipprod%3Afs.folder%3Aco.aDk_X_zRSMi_wysrhD8hPQ&viewModel=detail&moduleId=folders", icon: "C", style: "bg-acc" },
-                { title: "SharePoint", desc: "信号专业 (Signaling)", url: "https://metro1sas.sharepoint.com/sites/metro1/BBD/Forms/AllItems.aspx", icon: "S", style: "bg-sharepoint" },
-                { title: "OneDrive 公共", desc: "多专业文件共享", url: "https://metro1sas-my.sharepoint.com/personal/engineering_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fengineering%5Fmetro1%5Fcom%5Fco%2FDocuments%2F01%2ECurrent%20Design%28Civil%29%2F%5B5%2E04%5D%20METRO%20STATIONS&ga=1", icon: "O", style: "bg-onedrive" }
-            ]
-        },
-        {
-            category: "各站 CDE 模型库 (OneDrive)",
-            items: [
-                { title: "CDE-301-BIM", desc: "Station 01 Federated Model", url: "https://metro1sas-my.sharepoint.com/personal/miguelangel_b_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmiguelangel%5Fb%5Fmetro1%5Fcom%5Fco%2FDocuments%2F01%5FML1%2F02%5FSTATION%2FSTATION%2001%2F01%5FMODELO%20FEDERADO&view=0", icon: "1", style: "bg-onedrive" },
-                { title: "CDE-302-BIM", desc: "Station 02 Federated Model", url: "https://metro1sas-my.sharepoint.com/personal/miguelangel_b_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmiguelangel%5Fb%5Fmetro1%5Fcom%5Fco%2FDocuments%2F01%5FML1%2F02%5FSTATION%2FSTATION%2002%2F01%5FMODELO%20FEDERADO&view=0", icon: "2", style: "bg-onedrive" },
-                { title: "CDE-303-BIM", desc: "Station 03 Federated Model", url: "https://metro1sas-my.sharepoint.com/personal/miguelangel_b_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmiguelangel%5Fb%5Fmetro1%5Fcom%5Fco%2FDocuments%2F01%5FML1%2F02%5FSTATION%2FSTATION%2003%2F01%5FMODELO%20FEDERADO&view=0", icon: "3", style: "bg-onedrive" },
-                { title: "CDE-304-BIM", desc: "Station 04 Federated Model", url: "https://metro1sas-my.sharepoint.com/personal/miguelangel_b_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmiguelangel%5Fb%5Fmetro1%5Fcom%5Fco%2FDocuments%2F01%5FML1%2F02%5FSTATION%2FSTATION%2004%2F01%5FMODELO%20FEDERADO&view=0", icon: "4", style: "bg-onedrive" }
-            ]
-        }
-    ];
-
+let PROJECT_LINKS = [];
+async function loadLinks() {
+    try {
+        const response = await fetch('links.json?t=' + Date.now());
+        PROJECT_LINKS = await response.json();
+        renderLinks();
+    } catch (error) {
+        console.error('加载 links.json 失败：', error);
+        document.getElementById('links-panel').innerHTML =
+            '<div class="empty-state">❌ links.json 加载失败</div>';
+    }
+}
     // 初始化渲染链接
     function renderLinks() {
         const container = document.getElementById('links-panel');
@@ -331,7 +321,7 @@
         });
         container.innerHTML = html;
     }
-    renderLinks(); // 页面加载时执行
+    loadLinks();// 页面加载时执行
 
     // 切换面板显示
     function toggleLinksPanel() {
