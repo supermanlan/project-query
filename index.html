@@ -663,29 +663,6 @@ const GITHUB_BRANCH = 'main';
 const GITHUB_FILE_PATH = 'links.json';
 const ADMIN_PASSWORD = 'L18418149501';
 
-// ===== 页面初始化：自动创建管理按钮和面板 =====
-document.addEventListener('DOMContentLoaded', function () {
-    createAdminButton();
-    createAdminPanel();
-});
-
-// 创建“管理”按钮
-function createAdminButton() {
-    const actionArea = document.querySelector('.action-area');
-    if (!actionArea) return;
-
-    // 防止重复创建
-    if (document.getElementById('admin-open-btn')) return;
-
-    const btn = document.createElement('button');
-    btn.id = 'admin-open-btn';
-    btn.className = 'btn-glass btn-secondary';
-    btn.innerHTML = '<span>⚙️</span> 管理';
-    btn.onclick = openAdminPanel;
-
-    actionArea.appendChild(btn);
-}
-
 // 创建管理面板
 function createAdminPanel() {
     const contentContainer = document.querySelector('.content-container');
