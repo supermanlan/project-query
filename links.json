@@ -85,5 +85,38 @@
         "url": "https://metro1sas-my.sharepoint.com/shared?id=%2Fsites%2Fmetro1%2FCDE&listurl=https%3A%2F%2Fmetro1sas%2Esharepoint%2Ecom%2Fsites%2Fmetro1%2FCDE"
       }
     ]
+  },
+  {
+    "category": "CSD图纸-正在更新中.....",
+    "items": [
+      {
+        "icon": "1",
+        "style": "bg-acc",
+        "title": "1号站CSD图纸",
+        "desc": "CNL/CDE语音与数据桥架施工图纸",
+        "url": "https://metro1sas-my.sharepoint.com/personal/bs_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fbs%5Fmetro1%5Fcom%5Fco%2FDocuments%2FuBIM%20CSD%2F301%2DESTACI%C3%93N%20METRO%201&ga=1"
+      },
+      {
+        "icon": "2",
+        "style": "bg-aconex",
+        "title": "2号站CSD图纸",
+        "desc": "CNL/CDE语音与数据桥架施工图纸",
+        "url": "https://metro1sas-my.sharepoint.com/personal/bs_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fbs%5Fmetro1%5Fcom%5Fco%2FDocuments%2FuBIM%20CSD%2F302%2DESTACI%C3%93N%20METRO%202&ga=1"
+      },
+      {
+        "icon": "3",
+        "style": "bg-onedrive",
+        "title": "3号站CSD图纸",
+        "desc": "CNL/CDE语音与数据桥架施工图纸",
+        "url": "https://metro1sas-my.sharepoint.com/personal/bs_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fbs%5Fmetro1%5Fcom%5Fco%2FDocuments%2FuBIM%20CSD%2F303%2DESTACI%C3%93N%20METRO%203&ga=1"
+      },
+      {
+        "icon": "4",
+        "style": "bg-sharepoint",
+        "title": "4号站CSD图纸",
+        "desc": "CNL/CDE语音与数据桥架施工图纸",
+        "url": "https://metro1sas-my.sharepoint.com/personal/bs_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fbs%5Fmetro1%5Fcom%5Fco%2FDocuments%2FuBIM%20CSD%2F304%2DESTACI%C3%93N%20METRO%204&ga=1"
+      }
+    ]
   }
 ]
