@@ -359,17 +359,23 @@ async function loadLinks() {
 
     // 切换面板显示
     function toggleLinksPanel() {
-        const resultDiv = document.getElementById('result-container');
-        const linksDiv = document.getElementById('links-panel');
-        
-        // 切换显示状态
-        if (linksDiv.style.display === 'block') {
-            linksDiv.style.display = 'none';
-            resultDiv.style.display = 'flex';
-        } else {
-            linksDiv.style.display = 'block';
-            resultDiv.style.display = 'none';
-        }
+    const resultDiv = document.getElementById('result-container');
+    const linksDiv = document.getElementById('links-panel');
+    const adminDiv = document.getElementById('admin-panel');
+
+    // ⭐ 关键修复：无论当前是否打开管理界面，都先隐藏管理界面
+    adminDiv.style.display = 'none';
+
+    // 当前已经显示“常用平台” → 切换回结果页
+    if (linksDiv.style.display === 'block') {
+        linksDiv.style.display = 'none';
+        resultDiv.style.display = 'flex';
+    } 
+    // 当前未显示“常用平台” → 打开常用平台
+    else {
+        linksDiv.style.display = 'block';
+        resultDiv.style.display = 'none';
+    }
     }
 
     // ==========================================
