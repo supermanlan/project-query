@@ -15,6 +15,13 @@
         "url": "https://onedrive.live.com",
         "icon": "O",
         "style": "bg-onedrive"
+      },
+      {
+        "icon": "B",
+        "style": "bg-acc",
+        "title": "BIM360",
+        "desc": "BIM360",
+        "url": "https://docs.b360.autodesk.com/projects/161b9683-2f19-4d9f-a456-0f0c8dd37eba/folders/urn:adsk.wipprod:fs.folder:co.ZrBsrMHlTeecch0m86JLXA/detail"
       }
     ]
   },
