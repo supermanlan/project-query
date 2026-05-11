@@ -29,6 +29,13 @@
         "title": "AConex",
         "desc": "全专业文档管理",
         "url": "https://metro1sas.sharepoint.com/sites/metro1/BBD/Forms/AllItems.aspx"
+      },
+      {
+        "icon": "🔗",
+        "style": "bg-aconex",
+        "title": "现场施工图纸版本",
+        "desc": "各专业使用图纸版本说明",
+        "url": "https://metro1sas-my.sharepoint.com/:w:/g/personal/weak_current_metro1_com_co/IQBexw85vJQhTq0vEjUo5rduAY0IHLiKP--nsZYuohJ0Krs?e=uJFOnn"
       }
     ]
   },
@@ -38,43 +45,43 @@
       {
         "icon": "S",
         "style": "bg-acc",
-        "title": "Onedrive-sharepoint",
+        "title": "信号现场施工图纸/文档",
         "desc": "信号",
         "url": "https://metro1sas.sharepoint.com/sites/metro1/BBD/Forms/AllItems.aspx"
       },
       {
         "icon": "MEP",
         "style": "bg-onedrive",
-        "title": "包含FAS专业图纸",
-        "desc": "MEP-V00",
+        "title": "FAS现场施工图纸/文档",
+        "desc": "MEP-V00（包含MEP各个专业V00图纸）",
         "url": "https://metro1sas-my.sharepoint.com/personal/engineering_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fengineering%5Fmetro1%5Fcom%5Fco%2FDocuments%2F01%2ECurrent%20Design%28Civil%29%2F%5B5%2E04%5D%20METRO%20STATIONS&ga=1"
       },
       {
         "icon": "H",
         "style": "bg-acc",
-        "title": "环网图纸",
+        "title": "环网现场施工图纸/文档",
         "desc": "环网",
         "url": "https://metro1sas-my.sharepoint.com/personal/engineering_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fengineering%5Fmetro1%5Fcom%5Fco%2FDocuments%2F01%2ECurrent%20Design%28Civil%29%2F%5B5%2E07%5D%20SYSTEM%20AND%20EQUIPMENT%2F%5B5%2E7%2E2%5D%20SISTEMA%20DE%20ALIMENTACI%C3%93N%20DE%20ENERG%C3%8DA%20EL%C3%89CTRICA%20%28PSS%29%5FPOWER%20SUPPLY%20SYSTEM%20%28PSS%29%2F05%2EANILLOS%20DE%20MEDIA%20TENSION%20%2D%2034%2E5%20KV&ga=1"
       },
       {
         "icon": "G",
         "style": "bg-onedrive",
-        "title": "Ondrive",
-        "desc": "钢箱梁图纸",
+        "title": "钢箱梁开孔图纸",
+        "desc": "钢箱梁",
         "url": "https://metro1sas-my.sharepoint.com/personal/weiming_ren_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fweiming%5Fren%5Fmetro1%5Fcom%5Fco%2FDocuments%2FDesign%2FBasement%20wall%20opening%20drawings%2FMEP%20Opening%20Provision%20Drawings%20for%20U%2Dshaped%20Steel%20Box%20Girders%20of%20Stations%20No%2E%201%20to%2016&viewid=208e97db%2D3793%2D4040%2D8abb%2D06f4ad606f3a"
       },
       {
         "icon": "T",
         "style": "bg-acc",
-        "title": "Ondrive",
-        "desc": "通信最新图纸",
+        "title": "车站通信现场施工图纸",
+        "desc": "通信TECHNICAL NOTE",
         "url": "https://metro1sas-my.sharepoint.com/shared?id=%2Fsites%2Fmetro1%2FCOM&listurl=https%3A%2F%2Fmetro1sas%2Esharepoint%2Ecom%2Fsites%2Fmetro1%2FCOM"
       },
       {
         "icon": "C",
         "style": "bg-aconex",
-        "title": "Ondrive",
-        "desc": "CDE-语音与数据 最新图纸",
+        "title": "CDE-语音与数据现场施工图纸",
+        "desc": "CDE-语音与数据shopdrawing",
         "url": "https://metro1sas-my.sharepoint.com/shared?id=%2Fsites%2Fmetro1%2FCDE&listurl=https%3A%2F%2Fmetro1sas%2Esharepoint%2Ecom%2Fsites%2Fmetro1%2FCDE"
       }
     ]
