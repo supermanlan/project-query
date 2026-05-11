@@ -5,14 +5,14 @@
       {
         "title": "ACC",
         "desc": "Autodesk Construction Cloud",
-        "url": "https://acc.autodesk.com",
+        "url": "https://acc.autodesk.com/docs/files/projects/e39a06ca-ae5b-4b86-92c5-46917f518e67?folderUrn=urn%3Aadsk.wipprod%3Afs.folder%3Aco.bgz369hZSsidejeedKJuVg&viewModel=detail&moduleId=folders",
         "icon": "A",
         "style": "bg-acc"
       },
       {
         "title": "OneDrive",
         "desc": "微软云盘",
-        "url": "https://onedrive.live.com",
+        "url": "https://metro1sas-my.sharepoint.com/",
         "icon": "O",
         "style": "bg-onedrive"
       },
@@ -22,6 +22,20 @@
         "title": "BIM360",
         "desc": "BIM360",
         "url": "https://docs.b360.autodesk.com/projects/161b9683-2f19-4d9f-a456-0f0c8dd37eba/folders/urn:adsk.wipprod:fs.folder:co.ZrBsrMHlTeecch0m86JLXA/detail"
+      },
+      {
+        "icon": "S",
+        "style": "bg-onedrive",
+        "title": "SharePoint",
+        "desc": "信号",
+        "url": "https://metro1sas.sharepoint.com/sites/metro1/BBD/Forms/AllItems.aspx"
+      },
+      {
+        "icon": "A",
+        "style": "bg-onedrive",
+        "title": "AConex",
+        "desc": "全专业文档管理",
+        "url": "https://metro1sas.sharepoint.com/sites/metro1/BBD/Forms/AllItems.aspx"
       }
     ]
   },
