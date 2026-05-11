@@ -655,6 +655,149 @@ async function loadLinks() {
         if (/^V\d{2}$/.test(ver)) return "正式版本";
         return "版本号";
     }
+    // ==========================================
+// 🔐 管理后台配置
+// ==========================================
+const ADMIN_PASSWORD = "L18418149501";     // 管理员密码
+const GITHUB_OWNER = "supermanlan";        // GitHub 用户名
+const GITHUB_REPO = "project-query";       // 仓库名称
+const GITHUB_BRANCH = "main";              // 分支名称
+const FILE_PATH = "links.json";            // 文件路径
+
+// GitHub Token（直接写在前端）
+const GITHUB_TOKEN = "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";
+
+// ==========================================
+// 打开管理后台
+// ==========================================
+function openAdminPanel() {
+    // 隐藏其他区域
+    document.getElementById('result-container').style.display = 'none';
+    document.getElementById('links-panel').style.display = 'none';
+
+    // 显示管理面板
+    document.getElementById('admin-panel').style.display = 'block';
+
+    // 清空密码框
+    document.getElementById('admin-password').value = '';
+}
+
+// ==========================================
+// 关闭管理后台
+// ==========================================
+function closeAdminPanel() {
+    document.getElementById('admin-panel').style.display = 'none';
+    document.getElementById('result-container').style.display = 'flex';
+}
+
+// ==========================================
+// 管理员登录
+// ==========================================
+function adminLogin() {
+    const password = document.getElementById('admin-password').value.trim();
+
+    if (password !== ADMIN_PASSWORD) {
+        alert('密码错误');
+        return;
+    }
+
+    // 显示编辑器
+    const editor = document.getElementById('json-editor');
+    editor.style.display = 'block';
+
+    // 显示保存按钮
+    document.getElementById('save-btn').style.display = 'inline-flex';
+
+    // 加载当前 links.json 数据
+    editor.value = JSON.stringify(PROJECT_LINKS, null, 2);
+
+    alert('登录成功');
+}
+
+// ==========================================
+// 保存到 GitHub
+// ==========================================
+async function saveLinksToGitHub() {
+    const token = GITHUB_TOKEN;
+
+    if (!token) {
+        alert('GitHub Token 未配置');
+        return;
+    }
+
+    const editor = document.getElementById('json-editor');
+    let newContent;
+
+    // 校验 JSON 格式
+    try {
+        newContent = JSON.parse(editor.value);
+    } catch (e) {
+        alert('JSON 格式错误，请检查后再保存');
+        return;
+    }
+
+    const apiUrl =
+        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`;
+
+    try {
+        // 1. 获取当前文件信息（包含 SHA）
+        const getResp = await fetch(apiUrl, {
+            headers: {
+                Authorization: `token ${token}`,
+                Accept: 'application/vnd.github.v3+json'
+            }
+        });
+
+        if (!getResp.ok) {
+            const errText = await getResp.text();
+            throw new Error('无法读取 GitHub 文件：' + errText);
+        }
+
+        const fileData = await getResp.json();
+
+        // 2. Base64 编码（支持中文）
+        const contentBase64 = btoa(
+            unescape(
+                encodeURIComponent(
+                    JSON.stringify(newContent, null, 2)
+                )
+            )
+        );
+
+        // 3. 提交更新
+        const putResp = await fetch(apiUrl, {
+            method: 'PUT',
+            headers: {
+                Authorization: `token ${token}`,
+                'Content-Type': 'application/json',
+                Accept: 'application/vnd.github.v3+json'
+            },
+            body: JSON.stringify({
+                message: 'Update links.json via web admin',
+                content: contentBase64,
+                sha: fileData.sha,
+                branch: GITHUB_BRANCH
+            })
+        });
+
+        if (!putResp.ok) {
+            const errText = await putResp.text();
+            throw new Error('保存失败：' + errText);
+        }
+
+        // 4. 更新页面中的数据
+        PROJECT_LINKS = newContent;
+
+        // 5. 重新渲染常用平台
+        renderLinks();
+
+        alert('保存成功！GitHub Pages 将在几十秒内自动更新。');
+
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
 </script>
 
 </body>
