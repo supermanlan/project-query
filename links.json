@@ -24,13 +24,6 @@
         "url": "https://docs.b360.autodesk.com/projects/161b9683-2f19-4d9f-a456-0f0c8dd37eba/folders/urn:adsk.wipprod:fs.folder:co.ZrBsrMHlTeecch0m86JLXA/detail"
       },
       {
-        "icon": "S",
-        "style": "bg-onedrive",
-        "title": "SharePoint",
-        "desc": "信号",
-        "url": "https://metro1sas.sharepoint.com/sites/metro1/BBD/Forms/AllItems.aspx"
-      },
-      {
         "icon": "A",
         "style": "bg-onedrive",
         "title": "AConex",
@@ -40,14 +33,28 @@
     ]
   },
   {
-    "category": "新分类",
+    "category": "按专业划分",
     "items": [
       {
-        "icon": "B",
+        "icon": "S",
         "style": "bg-acc",
-        "title": "新链接",
-        "desc": "请输入描述",
-        "url": "https://"
+        "title": "Onedrive-sharepoint",
+        "desc": "信号",
+        "url": "https://metro1sas.sharepoint.com/sites/metro1/BBD/Forms/AllItems.aspx"
+      },
+      {
+        "icon": "MEP",
+        "style": "bg-onedrive",
+        "title": "Onedrive",
+        "desc": "MEP-V00",
+        "url": "https://metro1sas-my.sharepoint.com/personal/engineering_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fengineering%5Fmetro1%5Fcom%5Fco%2FDocuments%2F01%2ECurrent%20Design%28Civil%29%2F%5B5%2E04%5D%20METRO%20STATIONS&ga=1"
+      },
+      {
+        "icon": "H",
+        "style": "bg-acc",
+        "title": "Onedrive",
+        "desc": "环网图纸",
+        "url": "https://metro1sas-my.sharepoint.com/personal/engineering_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fengineering%5Fmetro1%5Fcom%5Fco%2FDocuments%2F01%2ECurrent%20Design%28Civil%29%2F%5B5%2E07%5D%20SYSTEM%20AND%20EQUIPMENT%2F%5B5%2E7%2E2%5D%20SISTEMA%20DE%20ALIMENTACI%C3%93N%20DE%20ENERG%C3%8DA%20EL%C3%89CTRICA%20%28PSS%29%5FPOWER%20SUPPLY%20SYSTEM%20%28PSS%29%2F05%2EANILLOS%20DE%20MEDIA%20TENSION%20%2D%2034%2E5%20KV&ga=1"
       }
     ]
   }
