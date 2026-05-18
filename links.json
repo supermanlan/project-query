@@ -158,5 +158,24 @@
         "url": "https://pan.baidu.com/share/init?surl=A-M9KquCcwI6z9aCLRYCLw"
       }
     ]
+  },
+  {
+    "category": "常用链接",
+    "items": [
+      {
+        "icon": "🔗",
+        "style": "bg-bim360",
+        "title": "Gemini",
+        "desc": "gemini",
+        "url": "https://gemini.google.com/"
+      },
+      {
+        "icon": "🔗",
+        "style": "bg-bim360",
+        "title": "Chatgpt",
+        "desc": "chatgpt",
+        "url": "https://chatgpt.com/"
+      }
+    ]
   }
 ]
