@@ -252,6 +252,108 @@
         .empty-state { text-align: center; padding: 60px; color: rgba(255,255,255,0.9); font-size: 1.2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+
+        /* ------------------- 联系开发者弹窗样式 ------------------- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 24px;
+    padding: 30px;
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+@keyframes popUp {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #718096;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.modal-close:hover { color: #2d3748; }
+
+.modal-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #2d3748;
+}
+
+.qr-wrapper {
+    background: white;
+    padding: 12px;
+    border-radius: 16px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    margin-bottom: 18px;
+}
+
+.qr-wrapper img {
+    width: 180px;
+    height: 180px;
+    display: block;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.wx-info-box {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 14px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wx-id {
+    font-family: 'SF Mono', 'Consolas', monospace;
+    font-weight: 700;
+    font-size: 15px;
+    color: #2b6cb0;
+}
+
+.btn-copy {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.btn-copy:hover { opacity: 0.9; transform: scale(1.05); }
 
     </style>
 </head>
@@ -277,6 +379,9 @@
         <button class="btn-glass btn-secondary" onclick="openAdminPanel()">
             <span>🔐</span> 管理
         </button>
+        <button class="btn-glass btn-secondary" onclick="openContactModal()">
+    <span>💬</span> 联系
+</button>
     </div>
 
     <div class="content-container">
@@ -319,7 +424,25 @@
 </div>
     </div>
 </div>
-
+<!-- 💬 联系开发者弹窗 -->
+<div id="contact-modal" class="modal-overlay" onclick="handleModalOverlayClick(event)">
+    <div class="modal-card">
+        <span class="modal-close" onclick="closeContactModal()">&times;</span>
+        <h3 class="modal-title">💬 联系开发者</h3>
+        <div class="qr-wrapper">
+            <!-- 替换为你的二维码图片路径 -->
+            <img src="wechat_qr.png" alt="微信二维码" id="wx-qr-img">
+        </div>
+        <div class="wx-info-box">
+            <div style="text-align: left;">
+                <span style="font-size: 11px; color: #718096; display: block; font-weight: 700;">微信号</span>
+                <!-- 替换为你的真实微信号 -->
+                <span class="wx-id" id="wx-id-text">hope-4818</span>
+            </div>
+            <button class="btn-copy" onclick="copyWeChatID(this)">复制</button>
+        </div>
+    </div>
+</div>
 <script>
     // ==========================================
     // 🔗 常用链接配置
@@ -888,6 +1011,37 @@ function renderAdminEditor() {
     `;
 
     container.innerHTML = html;
+}
+// ==========================================
+// 💬 联系开发者弹窗逻辑
+// ==========================================
+function openContactModal() {
+    document.getElementById('contact-modal').style.display = 'flex';
+}
+
+function closeContactModal() {
+    document.getElementById('contact-modal').style.display = 'none';
+}
+
+function handleModalOverlayClick(e) {
+    if (e.target.id === 'contact-modal') {
+        closeContactModal();
+    }
+}
+
+function copyWeChatID(btn) {
+    const wxId = document.getElementById('wx-id-text').innerText;
+    navigator.clipboard.writeText(wxId).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = '已复制！';
+        btn.style.background = '#48bb78';
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.background = '';
+        }, 2000);
+    }).catch(err => {
+        alert('复制失败，微信号为：' + wxId);
+    });
 }
 
 // ==========================================
