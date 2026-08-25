@@ -210,6 +210,13 @@
         "title": "Chatgpt",
         "desc": "chatgpt",
         "url": "https://chatgpt.com/"
+      },
+      {
+        "icon": "🔗",
+        "style": "bg-bim360",
+        "title": "KIMI",
+        "desc": "KIMI",
+        "url": "https://www.kimi.com/"
       }
     ]
   }
