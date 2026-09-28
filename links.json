@@ -52,7 +52,7 @@
       {
         "icon": "MEP",
         "style": "bg-onedrive",
-        "title": "2-16号车站FAS施工图纸",
+        "title": "2-16号车站MEP-V00图纸「参考BIM」",
         "desc": "MEP-V00（包含MEP各个专业V00图纸）",
         "url": "https://metro1sas-my.sharepoint.com/personal/engineering_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fengineering%5Fmetro1%5Fcom%5Fco%2FDocuments%2F01%2ECurrent%20Design%28Civil%29%2F%5B5%2E04%5D%20METRO%20STATIONS&ga=1"
       },
@@ -73,9 +73,9 @@
       {
         "icon": "T",
         "style": "bg-acc",
-        "title": "车站通信现场施工图纸",
+        "title": "2-16站通信图纸",
         "desc": "通信TECHNICAL NOTE",
-        "url": "https://metro1sas-my.sharepoint.com/shared?id=%2Fpersonal%2Fmetrosystem%5Fmetro1%5Fcom%5Fco%2FDocuments%2FMSCS%2FCOM%2DRAD&listurl=%2Fpersonal%2Fmetrosystem%5Fmetro1%5Fcom%5Fco%2FDocuments&ct=1784839326519&or=OWA%2DNT%2DMail&ga=1"
+        "url": "https://metro1sas-my.sharepoint.com/shared?listurl=https%3A%2F%2Fmetro1sas%2Dmy%2Esharepoint%2Ecom%2Fpersonal%2Fmetrosystem%5Fmetro1%5Fcom%5Fco%2FDocuments&id=%2Fpersonal%2Fmetrosystem%5Fmetro1%5Fcom%5Fco%2FDocuments%2FMSCS%2FCOM%2DRAD&ct=1784839326519&or=OWA%2DNT%2DMail&shareLink=1%2C1&ga=1"
       },
       {
         "icon": "C",
@@ -87,8 +87,8 @@
       {
         "icon": "C",
         "style": "bg-aconex",
-        "title": "2-16站CDE语音与数据施工图纸",
-        "desc": "2-16站语音与数据现场施工图纸",
+        "title": "2-16站CDE语音与数据/照明控制施工图纸",
+        "desc": "2-16站语音与数据/照明控制施工图纸",
         "url": "https://metro1sas-my.sharepoint.com/personal/engineering_metro1_com_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fengineering%5Fmetro1%5Fcom%5Fco%2FDocuments%2F3%20Design%20Management%2F15%20MEP%2FTrazabilidad%20Integration%20Drawings%2F0007%20Metro%20Stations%2FUCD&ga=1"
       }
     ]
